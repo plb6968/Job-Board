@@ -1,24 +1,46 @@
 import { useState } from 'react';
+import handleNewJob from '../../pages/NewJobPage/NewJobPage'
 
 export default function JobForm() {
- return (
+  const [newJob, setNewJob] = useState({
+    title: '',
+    company: '',
+    location: '',
+    description: '',
+    responcibilities: '',
+    description: '',
+    skills: '',
+    benifets: ''
+  });
+
+  function handleChange(evt) {
+    setNewJob({...newJob, [evt.target.name]: evt.target.value});
+  }
+
+  function handleSubmit(evt) {
+    evt.preventDefault();
+    handleNewJob(newJob);
+  }
+ 
+  return (
   <div>
-    <div>
-      <form>
+    <div className="form-container">
+      <form onSubmit={handleSubmit}>
         <label>Job Title</label>
-        <input type="text" name="title" />
+        <input type="text" name="title" value={newJob.title} onChange={handleChange} required />
         <label>Company Name</label>
-        <input type="text" name="company" />
+        <input type="text" name="company" value={newJob.company} onChange={handleChange} required />
         <label>Location</label>
-        <input type="text" name="location" />
+        <input type="text" name="location" value={newJob.location} onChange={handleChange} required />
         <label>Description</label>
-        <input type="text-area" name="Description" />
+        <textarea name="description" className="form-text-area" value={newJob.description} onChange={handleChange} required />
         <label>Responcibilities</label>
-        <input type="text-area" name="Responcibilities" />
+        <textarea name="responcibilities" className="form-text-area" value={newJob.responcibilities} onChange={handleChange} required />
         <label>Skills Required</label>
-        <input type="text-area" name="skillsRequired" />
+        <textarea name="skills" className="form-text-area" value={newJob.skills} onChange={handleChange} required />
         <label>Benifets</label>
-        <input type="text" name="benifets" />
+        <input type="text" name="benifets" value={newJob.benifets} onChange={handleChange} />
+        <button type="submit">Add Job</button>
       </form>
     </div>
   </div>
