@@ -1,5 +1,5 @@
 {
-  "name": "mern-infrastructure",
+  "name": "job-board",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
