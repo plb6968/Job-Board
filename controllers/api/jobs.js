@@ -6,4 +6,5 @@ module.exports = {
 
 async function create(req, res) {
   await Job.create(req.body);
+  res.json(job)
 }

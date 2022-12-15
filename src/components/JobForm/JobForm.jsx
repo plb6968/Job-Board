@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import handleNewJob from '../../pages/NewJobPage/NewJobPage'
+import * as jobsAPI from '../../utilities/jobs-api'
+
 
 export default function JobForm() {
   const [newJob, setNewJob] = useState({
@@ -12,6 +14,11 @@ export default function JobForm() {
     skills: '',
     benifets: ''
   });
+
+  async function handleNewJob(jobData) {
+    await jobsAPI.add(jobData);
+    console.log(jobData);
+  }
 
   function handleChange(evt) {
     setNewJob({...newJob, [evt.target.name]: evt.target.value});
