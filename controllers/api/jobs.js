@@ -1,9 +1,9 @@
-const express = require('express');
+const Job = require('../../models/job');
 
 module.exports = {
   create
 }
 
 async function create(req, res) {
-  req.body.user
+  await Job.create(req.body);
 }
