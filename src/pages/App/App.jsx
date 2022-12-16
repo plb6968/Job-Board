@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import { getUser } from '../../utilities/users-service';
-import './App.css';
 import AuthPage from '../AuthPage/AuthPage';
 import NewJobPage from '../NewJobPage/NewJobPage';
 import AllJobsPage from '../AllJobsPage/AllJobsPage';
 import NavBar from '../../components/NavBar/NavBar';
 import HomePage from '../HomePage/HomePage'
 import * as jobsAPI from '../../utilities/jobs-api';
+import './App.css';
 
 export default function App() {
   const [user, setUser] = useState(getUser());
@@ -17,10 +17,19 @@ export default function App() {
   const navigate = useNavigate();
 
   async function handleNewJob(jobData) {
-    const job = await jobsAPI.add(jobData);
-    setJobs(...jobs, job)
+    const updatedJobs = await jobsAPI.add(jobData);
+    setJobs(updatedJobs);
   }
-  
+
+  useEffect(function() {
+    async function getJobs() {
+      const allJobs = await jobsAPI.getAll();
+      setJobs(allJobs);
+      console.log(allJobs);
+    }
+    getJobs()
+  }, []);
+  console.log(jobs);
 
   return (
     <main className="App">

@@ -1,11 +1,12 @@
 import sendRequest from "./send-request";
+
 const BASE_URL = '/api/jobs';
 
 
 export function add(jobData) {
-  sendRequest(BASE_URL, 'POST', jobData);
+  return sendRequest(BASE_URL, 'POST', jobData);
 }
 
 export function getAll() {
-  sendRequest(BASE_URL);
+  return sendRequest(BASE_URL);
 }
