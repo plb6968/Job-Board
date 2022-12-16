@@ -1,9 +1,6 @@
 import { useState } from 'react';
-import handleNewJob from '../../pages/NewJobPage/NewJobPage'
-import * as jobsAPI from '../../utilities/jobs-api'
 
-
-export default function JobForm() {
+export default function JobForm({handleNewJob}) {
   const [newJob, setNewJob] = useState({
     title: '',
     company: '',
@@ -14,12 +11,7 @@ export default function JobForm() {
     skills: '',
     benifets: ''
   });
-
-  async function handleNewJob(jobData) {
-    await jobsAPI.add(jobData);
-    console.log(jobData);
-  }
-
+  
   function handleChange(evt) {
     setNewJob({...newJob, [evt.target.name]: evt.target.value});
   }
@@ -27,6 +19,17 @@ export default function JobForm() {
   function handleSubmit(evt) {
     evt.preventDefault();
     handleNewJob(newJob);
+    console.log(newJob);
+    setNewJob({
+    title: '',
+    company: '',
+    location: '',
+    description: '',
+    responcibilities: '',
+    description: '',
+    skills: '',
+    benifets: ''
+    });
   }
  
   return (

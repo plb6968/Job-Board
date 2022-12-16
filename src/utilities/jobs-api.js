@@ -5,3 +5,7 @@ const BASE_URL = '/api/jobs';
 export function add(jobData) {
   sendRequest(BASE_URL, 'POST', jobData);
 }
+
+export function getAll() {
+  sendRequest(BASE_URL);
+}

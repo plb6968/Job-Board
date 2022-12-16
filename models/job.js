@@ -32,7 +32,8 @@ const jobSchema = new Schema ({
   },
   user: {
     type: Schema.Types.ObjectId,
-    ref: 'User',
-    required: true
+    ref: 'User'
   }
-})
+});
+
+module.exports = mongoose.model('Job', jobSchema);
