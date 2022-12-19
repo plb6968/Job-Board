@@ -15,12 +15,7 @@ export default function App() {
   const [jobs, setJobs] = useState([]);
 
   const navigate = useNavigate();
-
-  async function handleNewJob(jobData) {
-    const updatedJobs = await jobsAPI.add(jobData);
-    setJobs(updatedJobs);
-  }
-
+  
   useEffect(function() {
     async function getJobs() {
       const allJobs = await jobsAPI.getAll();
@@ -29,7 +24,14 @@ export default function App() {
     }
     getJobs()
   }, []);
+
   console.log(jobs);
+
+  async function handleNewJob(jobData) {
+    const updatedJobs = await jobsAPI.add(jobData);
+    setJobs(updatedJobs);
+  }
+
 
   return (
     <main className="App">
