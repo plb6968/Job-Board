@@ -15,18 +15,17 @@ export default function App() {
   
   const [jobs, setJobs] = useState([]);
 
+  const [curJob, setCurJob] = useState({});
+
   const navigate = useNavigate();
   
   useEffect(function() {
     async function getJobs() {
       const allJobs = await jobsAPI.getAll();
       setJobs(allJobs);
-      console.log(allJobs);
     }
     getJobs()
   }, []);
-
-  console.log(jobs);
 
   async function handleNewJob(jobData) {
     const updatedJobs = await jobsAPI.add(jobData);
@@ -42,9 +41,9 @@ export default function App() {
             <Routes>
               {/* Route components in here */}
               <Route path='/' element={<HomePage />} />
-              <Route path="/jobs/new" element={<NewJobPage jobs={jobs} handleNewJob={handleNewJob}/>} />
+              <Route path="/jobs/new" element={<NewJobPage jobs={jobs} handleNewJob={handleNewJob} />} />
               <Route path="/jobs" element={<AllJobsPage jobs={jobs} />} />
-              <Route path="/jobs/:id" element={<JobDetailPage jobs={jobs} />}></Route>
+              <Route path="/jobs/:jobId" element={<JobDetailPage />} />
             </Routes>
           </>
           :

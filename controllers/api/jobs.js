@@ -28,13 +28,14 @@ async function index(req, res) {
   }
 }
 
-async function show(req, res) {
-  
-  console.log('show started');
-  try {
-    const job = await Job.findById(req.body._id);
-    res.json(job);
-  } catch (err) {
-    res.status(400).json(err);
-  }
-}
+
+ async function show(req, res) {
+   console.log('Show Initiated')
+   try {
+     const job = await Job.findById(req.params.id);
+     res.json(job);
+     console.log(job);
+   } catch (err) {
+     res.status(400).json(err);
+   }
+ }

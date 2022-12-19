@@ -1,22 +1,48 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
-import * as JobsAPI from "../../utilities/jobs-api";
+import * as jobsAPI from "../../utilities/jobs-api";
 
-export default function JobDetailPage({jobs}) {
+export default function JobDetailPage() {
   
-  let jobId = useParams();
-  console.log(jobId);
-  
-  async function getJob(jobId) {
-    let job = await JobsAPI.getById(jobId.id);
-  }
-  
+  const [curJob, setCurJob] = useState(null);
 
+  let { jobId } = useParams();
 
-  getJob(jobId)
-  
+  useEffect(function() {
+    async function getJob(jobId) {
+      let job = await jobsAPI.getById(jobId);
+      setCurJob(job);
+      console.log(job);
+    }
+    getJob(jobId);
+  }, [jobId]);
+
+  if (!curJob) return null;
+
   return (
-  <div>
-  </div>
+    <div>
+      <h1>{curJob.title}</h1>
+      <h3>{curJob.company}</h3>
+      <div>
+        <h4>Location:</h4>
+        <p>{curJob.location}</p>
+      </div>
+      <div>
+        <h4>Description:</h4>
+        <p>{curJob.description}</p>
+      </div>
+      <div>
+        <h4>Responcibilities:</h4>
+        <p>{curJob.responcibilities}</p>
+      </div>
+      <div>
+        <h4>Skills:</h4>
+        <p>{curJob.skills}</p>
+      </div>
+      <div>
+        <h4>Benifets:</h4>
+        <p>{curJob.benifets}</p>
+      </div>
+    </div>
  );
 }
