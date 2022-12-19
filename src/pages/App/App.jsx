@@ -4,6 +4,7 @@ import { getUser } from '../../utilities/users-service';
 import AuthPage from '../AuthPage/AuthPage';
 import NewJobPage from '../NewJobPage/NewJobPage';
 import AllJobsPage from '../AllJobsPage/AllJobsPage';
+import JobDetailPage from '../JobDetailPage/JobDetailPage';
 import NavBar from '../../components/NavBar/NavBar';
 import HomePage from '../HomePage/HomePage'
 import * as jobsAPI from '../../utilities/jobs-api';
@@ -32,7 +33,6 @@ export default function App() {
     setJobs(updatedJobs);
   }
 
-
   return (
     <main className="App">
       { user ?
@@ -44,6 +44,7 @@ export default function App() {
               <Route path='/' element={<HomePage />} />
               <Route path="/jobs/new" element={<NewJobPage jobs={jobs} handleNewJob={handleNewJob}/>} />
               <Route path="/jobs" element={<AllJobsPage jobs={jobs} />} />
+              <Route path="/jobs/:id" element={<JobDetailPage jobs={jobs} />}></Route>
             </Routes>
           </>
           :

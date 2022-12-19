@@ -2,8 +2,10 @@ const Job = require('../../models/job');
 
 module.exports = {
   create,
-  index
+  index,
+  show
 }
+
 
 
 async function create(req, res) {
@@ -22,6 +24,17 @@ async function index(req, res) {
     const allJobs = await Job.find({});
     res.json(allJobs);
   } catch(err) {
+    res.status(400).json(err);
+  }
+}
+
+async function show(req, res) {
+  
+  console.log('show started');
+  try {
+    const job = await Job.findById(req.body._id);
+    res.json(job);
+  } catch (err) {
     res.status(400).json(err);
   }
 }
