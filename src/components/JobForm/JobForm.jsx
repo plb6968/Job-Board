@@ -19,7 +19,6 @@ export default function JobForm({handleNewJob}) {
   function handleSubmit(evt) {
     evt.preventDefault();
     handleNewJob(newJob);
-    console.log(newJob);
     setNewJob({
     title: '',
     company: '',

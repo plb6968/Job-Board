@@ -28,7 +28,6 @@ async function index(req, res) {
   }
 }
 
-
  async function show(req, res) {
    console.log('Show Initiated')
    try {

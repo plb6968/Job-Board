@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
+import CommentForm from "../../components/CommentForm/CommentForm"
 import * as jobsAPI from "../../utilities/jobs-api";
 
 export default function JobDetailPage() {
@@ -16,6 +17,10 @@ export default function JobDetailPage() {
     }
     getJob(jobId);
   }, [jobId]);
+
+  function handleNewComment() {
+
+  }
 
   if (!curJob) return null;
 
@@ -44,6 +49,9 @@ export default function JobDetailPage() {
       <div>
         <h4>Benifets:</h4>
         <p>{curJob.benifets}</p>
+      </div>
+      <div>
+        <CommentForm handleNewComment={handleNewComment} />
       </div>
     </div>
  );
