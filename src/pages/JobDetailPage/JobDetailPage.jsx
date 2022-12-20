@@ -21,8 +21,10 @@ export default function JobDetailPage() {
 
   return (
     <div>
-      <h1>{curJob.title}</h1>
-      <h3>{curJob.company}</h3>
+      <div>
+        <h1>{curJob.title}</h1>
+        <h3>Company: {curJob.company}</h3>
+      </div>
       <div>
         <h4>Location:</h4>
         <p>{curJob.location}</p>
