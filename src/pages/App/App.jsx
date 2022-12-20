@@ -41,7 +41,7 @@ export default function App() {
               <Route path='/' element={<HomePage />} />
               <Route path="/jobs/new" element={<NewJobPage jobs={jobs} handleNewJob={handleNewJob} />} />
               <Route path="/jobs" element={<AllJobsPage jobs={jobs} />} />
-              <Route path="/jobs/:jobId" element={<JobDetailPage />} />
+              <Route path="/jobs/:jobId" element={<JobDetailPage setJobs={setJobs} jobs={jobs} user={user} />} />
             </Routes>
           </>
           :
