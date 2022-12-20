@@ -2,10 +2,13 @@ import { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
 import CommentForm from "../../components/CommentForm/CommentForm"
 import * as jobsAPI from "../../utilities/jobs-api";
+import * as commentsAPI from "../../utilities/comments-api";
 
 export default function JobDetailPage() {
   
   const [curJob, setCurJob] = useState(null);
+
+  const [allComments, setAllComments] = useState([]);
 
   let { jobId } = useParams();
 
@@ -18,8 +21,9 @@ export default function JobDetailPage() {
     getJob(jobId);
   }, [jobId]);
 
-  function handleNewComment() {
-
+  async function handleNewComment(newComment) {
+    let updatedComments = await commentsAPI.addComment(newComment);
+    setAllComments(updatedComments);
   }
 
   if (!curJob) return null;

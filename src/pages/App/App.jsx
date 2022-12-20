@@ -15,8 +15,6 @@ export default function App() {
   
   const [jobs, setJobs] = useState([]);
 
-  const [curJob, setCurJob] = useState({});
-
   const navigate = useNavigate();
   
   useEffect(function() {
