@@ -1,7 +1,9 @@
 const Job = require('../../models/job');
 
 module.exports = {
-  create
+  create,
+  update,
+  delete: deleteComment 
 }
 
 async function create(req, res) {
@@ -13,4 +15,12 @@ async function create(req, res) {
   console.log(job);
   const allJobs = await Job.find({});
   res.json(allJobs);
+}
+
+async function update(req, res) {
+  
+}
+
+async function deleteComment(req,res) {
+
 }

@@ -11,5 +11,5 @@ export function updateComment(comment, postId) {
 }
 
 export function deleteComment(comment, postId) {
-  
+  return sendRequest(`${BASE_URL}/${postId}`, 'DELETE', comment)
 }
