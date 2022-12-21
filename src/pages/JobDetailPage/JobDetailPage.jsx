@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import CommentForm from "../../components/CommentForm/CommentForm";
 import CommentCard from "../../components/CommentCard/CommentCard";
 import * as jobsAPI from "../../utilities/jobs-api";
@@ -22,12 +22,17 @@ export default function JobDetailPage({ setJobs, jobs, user }) {
       setAllComments(job.comments);
     }
     getJob();
-  }, [jobId]);
+  }, []);
 
   async function handleNewComment(newComment) {
     let updatedJobs = await commentsAPI.addComment(newComment, jobId);
     setJobs(updatedJobs);
-    console.log(jobs);
+    let job = updatedJobs.find(function(j) {
+      if(j._id === jobId) return j;
+    });
+    console.log(job);
+    setCurJob(job);
+    setAllComments(job.comments);
   }
 
   if (!curJob) return null;
@@ -62,9 +67,17 @@ export default function JobDetailPage({ setJobs, jobs, user }) {
         <CommentForm handleNewComment={handleNewComment} />
       </div>
       <div>
-        {allComments.map((comment, idx) =>
-          <CommentCard user={user} key={idx} comment={comment} />
-        )}
+        <table>
+          <thead>
+            <th>User</th>
+            <th>Comment</th>
+          </thead>
+          <tbody>
+            {allComments.map((comment, idx) =>
+              <CommentCard user={user} key={idx} comment={comment} />
+            )}
+          </tbody>
+        </table>  
       </div>
     </div>
  );

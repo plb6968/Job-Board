@@ -1,11 +1,26 @@
 
+export default function CommentCard({user, comment}) {
+  
+  function handleEdit() {
 
+  }
 
-export default function CommentCard({user, allComments}) {
+  function handleDelete() {
+
+  }
   
   return (
-    <div>
-      
-    </div>
+      <tr>
+        <td>{comment.userName}</td>
+        <td>{comment.text}</td>
+        {user._id === comment.user ?
+          <>
+            <td><button type="submit" onSubmit={handleEdit}>Edit</button></td>
+            <td><button typee="submit" onSubmit={handleEdit}>Delete</button></td>
+          </>  
+          :
+          <></>
+        }
+      </tr>   
   );
 }
