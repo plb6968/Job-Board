@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from "react-router-dom";
 import CommentForm from "../../components/CommentForm/CommentForm";
 import CommentCard from "../../components/CommentCard/CommentCard";
+import UpdateCommentForm from "../../CommentUpdateForm/CommentUpdateForm";
 import * as jobsAPI from "../../utilities/jobs-api";
 import * as commentsAPI from "../../utilities/comments-api";
 
@@ -12,6 +13,8 @@ export default function JobDetailPage({ setJobs, jobs, user }) {
   const [allComments, setAllComments] = useState([]);
 
   let { jobId } = useParams();
+
+  
 
   useEffect(function() {
     async function getJob() {
@@ -30,9 +33,29 @@ export default function JobDetailPage({ setJobs, jobs, user }) {
     let job = updatedJobs.find(function(j) {
       if(j._id === jobId) return j;
     });
-    console.log(job);
     setCurJob(job);
     setAllComments(job.comments);
+  }
+
+  
+
+  async function handleEditComment(editedComment) {
+    console.log(editedComment);
+    let updatedJobs = await commentsAPI.updateComment(editedComment, jobId);
+    let job = updatedJobs.find(function(j) {
+      if(j._id === jobId) return j;
+    });
+    setCurJob(job);
+    setAllComments(job.comments);
+  }
+
+  async function handleDeleteComment(comment) {
+    let updatedJobs = await commentsAPI.deleteComment(comment, jobId)
+    let job = updatedJobs.find(function(j) {
+      if(j._id === jobId) return j;
+    });
+    setCurJob(job);
+    setAllComments(job.comments)
   }
 
   if (!curJob) return null;
@@ -64,17 +87,22 @@ export default function JobDetailPage({ setJobs, jobs, user }) {
         <p>{curJob.benifets}</p>
       </div>
       <div>
-        <CommentForm handleNewComment={handleNewComment} />
       </div>
+        <CommentForm handleNewComment={handleNewComment} />
       <div>
         <table>
-          <thead>
-            <th>User</th>
-            <th>Comment</th>
-          </thead>
+            <tr>
+              <th>User</th>
+              <th>Comment</th>
+            </tr>
           <tbody>
-            {allComments.map((comment, idx) =>
-              <CommentCard user={user} key={idx} comment={comment} />
+            {allComments.map((comment, idx) => 
+              <CommentCard 
+                user={user} 
+                key={idx} 
+                comment={comment}  
+                handleDeleteComment={handleDeleteComment} 
+                handleEditComment={handleEditComment} />
             )}
           </tbody>
         </table>  
