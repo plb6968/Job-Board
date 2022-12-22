@@ -1,74 +1,36 @@
-# MERN-Stack Infrastucture
-Clone this repo to provide the starter code for a comprehensive MERN-Stack project including token-based authentication.
+## Recipe Share
+Jobio is a job posting website that allows companies to post jobs for potential applicants to view and potentially decide to apply.    
 
+[Jobio](https://jobio.herokuapp.com/)  
 
-# Getting Started with Create React App
+[Project Planning](https://trello.com/b/G9pClnXN/job-board)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+I designed the site with a simple and elegant color scheme that is continuous throughout.
 
-## Available Scripts
+## Functionality
 
-In the project directory, you can run:
+![Login Page](./readme-images/signup-page.png)
 
-### `npm start`
+When the user arrives on the page, they are greeted with a page that prompts them to either sign up or login. If the user does not have an account they will need to create one using the sign up for. If the user has an account can simply login using the login form.   
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+![Add Job](./readme-images/new-job-page.png)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+The new job page provides the usr with a form to with the nessacary feilds to create a thourogh job post.   
 
-### `npm test`
+![Job Details](./readme-images/job-details-page.png)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The Job detail page displays the jobs create using the new hob page.   
 
-### `npm run build`
+## Technologies Used
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+HTML, CSS, React, Javascript, nade.js, Express, Mongoose, MongoDB
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Future Additions
+[ ] Image panel on home page, providing links to 3 most recent job posts.  
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+[ ] User page, with job postings made by the lgged in user.   
 
-### `npm run eject`
+[ ] Allow job posters to add a company logo to the job posting.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+[ ] Add a resume builder to make it easier for job seakers to apply to jobs. 
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
