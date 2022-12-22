@@ -9,11 +9,10 @@ module.exports = {
 async function create(req, res) {
   req.body.user = req.user._id;
   req.body.userName = req.user.name;
-  const job = await Job.findById(req.params.id);
+  const job = await Job.findById(req.params.jobId);
   job.comments.push(req.body);
   await job.save();
-  const allJobs = await Job.find({});
-  res.json(allJobs);
+  res.json(job);
 }
 
 async function update(req, res) {
@@ -24,11 +23,10 @@ async function update(req, res) {
   res.json(job);
 }
 
-async function deleteComment(req,res) {
+async function deleteComment(req, res) {
   console.log('delete triggered');
-  const job = await Job.FindById(req.params.id);
-  const comment = job.comments.id(req.body.id)
+  const job = await Job.findOne({'comments._id': req.params.id});
   job.comments.remove(req.params.id);
-  job.save()
+  await job.save()
   res.json(job);
 }

@@ -7,7 +7,6 @@ export default function JobForm({handleNewJob}) {
     location: '',
     description: '',
     responcibilities: '',
-    description: '',
     skills: '',
     benifets: ''
   });
@@ -25,7 +24,6 @@ export default function JobForm({handleNewJob}) {
     location: '',
     description: '',
     responcibilities: '',
-    description: '',
     skills: '',
     benifets: ''
     });

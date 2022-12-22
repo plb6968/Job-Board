@@ -10,6 +10,6 @@ export function updateComment(comment, postId) {
   return sendRequest(`${BASE_URL}/${postId}`, 'PUT', comment);
 }
 
-export function deleteComment(comment, postId) {
-  return sendRequest(`${BASE_URL}/${postId}`, 'DELETE', comment)
+export function deleteComment(commentId) {
+  return sendRequest(`${BASE_URL}/${commentId}`, 'DELETE');
 }

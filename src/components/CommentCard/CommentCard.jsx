@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 
-export default function CommentCard({user, comment, handleEdit, handleDelete, handleEditComment}) {
+export default function CommentCard({user, comment, handleEditComment, handleDeleteComment}) {
 
   const [editedComment, setEditedComment] = useState({
     text: comment.text,
@@ -20,7 +20,7 @@ export default function CommentCard({user, comment, handleEdit, handleDelete, ha
       <tr>
           <td><input type="text" name="text" value={editedComment.text} placeholder={comment.text} onChange={handleChange}></input></td>
               <>
-                <td><button type="button" onClick={() => {setEditPressed(false)}}>Update</button></td>
+                <td><button type="button" onClick={() => [setEditPressed(false), handleEditComment(editedComment)]}>Update</button></td>
                 <td><button type="button" onClick={() => setEditPressed(false)}>Cancel</button></td>
               </>
       </tr> 
@@ -31,7 +31,7 @@ export default function CommentCard({user, comment, handleEdit, handleDelete, ha
           {user._id === comment.user ?
             <>
               <td><button type="button" onClick={() => setEditPressed(true)}>Edit</button></td>
-              <td><button type="button" onClick={handleDelete}>Delete</button></td>
+              <td><button type="button" onClick={() => handleDeleteComment(comment)}>Delete</button></td>
             </>  
             :
             <></>

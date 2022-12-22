@@ -9,56 +9,39 @@ import * as commentsAPI from "../../utilities/comments-api";
 export default function JobDetailPage({ setJobs, jobs, user }) {
   
   const [curJob, setCurJob] = useState(null);
-
-  const [allComments, setAllComments] = useState([]);
-
   let { jobId } = useParams();
 
-  
-
   useEffect(function() {
-    async function getJob() {
-      let job = jobs.find(function(j) {
-        if(j._id === jobId) return j;
-      });
+      let job = jobs.find((j) => j._id === jobId);
       setCurJob(job);
-      setAllComments(job.comments);
-    }
-    getJob();
-  }, []);
+  }, [jobs]);
+
+  if (!curJob) return null;
 
   async function handleNewComment(newComment) {
-    let updatedJobs = await commentsAPI.addComment(newComment, jobId);
-    setJobs(updatedJobs);
-    let job = updatedJobs.find(function(j) {
-      if(j._id === jobId) return j;
-    });
-    setCurJob(job);
-    setAllComments(job.comments);
+    let updatedJob = await commentsAPI.addComment(newComment, jobId);
+    const jobsCopy = [...jobs];
+    const idx = jobsCopy.findIndex((j) => j._id === updatedJob._id);
+    jobsCopy[idx] = updatedJob;
+    setJobs(jobsCopy);
+    setCurJob(updatedJob);
   }
-
-  
 
   async function handleEditComment(editedComment) {
     console.log(editedComment);
-    let updatedJobs = await commentsAPI.updateComment(editedComment, jobId);
-    let job = updatedJobs.find(function(j) {
-      if(j._id === jobId) return j;
-    });
-    setCurJob(job);
-    setAllComments(job.comments);
-  }
+    let updatedJob = await commentsAPI.updateComment(editedComment, jobId);
+    console.log(updatedJob);
+    setCurJob(updatedJob);
+    //setAllComments(updatedJob.comments);
+   }
 
   async function handleDeleteComment(comment) {
-    let updatedJobs = await commentsAPI.deleteComment(comment, jobId)
-    let job = updatedJobs.find(function(j) {
-      if(j._id === jobId) return j;
-    });
-    setCurJob(job);
-    setAllComments(job.comments)
+    console.log('handleDeleteComment called');
+    let updatedJob = await commentsAPI.deleteComment(comment._id);
+    console.log(updatedJob);
+    setCurJob(updatedJob);
+    //setAllComments(updatedJob.comments)
   }
-
-  if (!curJob) return null;
 
   return (
     <div>
@@ -91,18 +74,21 @@ export default function JobDetailPage({ setJobs, jobs, user }) {
         <CommentForm handleNewComment={handleNewComment} />
       <div>
         <table>
+          <thead>
             <tr>
               <th>User</th>
               <th>Comment</th>
             </tr>
+          </thead>
           <tbody>
-            {allComments.map((comment, idx) => 
+            {curJob.comments.map((comment, idx) => 
               <CommentCard 
                 user={user} 
                 key={idx} 
                 comment={comment}  
                 handleDeleteComment={handleDeleteComment} 
-                handleEditComment={handleEditComment} />
+                handleEditComment={handleEditComment} 
+                />
             )}
           </tbody>
         </table>  
