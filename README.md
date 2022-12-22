@@ -23,7 +23,7 @@ The Job detail page displays the jobs create using the new hob page.
 
 ## Technologies Used
 
-HTML, CSS, React, Javascript, nade.js, Express, Mongoose, MongoDB
+HTML, CSS, React, Javascript, node.js, Express, Mongoose, MongoDB
 
 ## Future Additions
 [ ] Image panel on home page, providing links to 3 most recent job posts.  
