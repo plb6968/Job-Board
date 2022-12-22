@@ -19,7 +19,7 @@ export default function CommentForm({handleNewComment}) {
     <div className="form-container">
       <form onSubmit={handleSubmit}>
         <label>Comment</label>
-        <input type="text" value={comment.text} name="text" onChange={handleChange} />
+        <input type="text" value={comment.text} name="text" onChange={handleChange} required/>
         <button type="submit">Add Comment</button>
       </form>
     </div>

@@ -20,8 +20,8 @@ export default function CommentCard({user, comment, handleEditComment, handleDel
       <tr>
           <td><input type="text" name="text" value={editedComment.text} placeholder={comment.text} onChange={handleChange}></input></td>
               <>
-                <td><button type="button" onClick={() => [setEditPressed(false), handleEditComment(editedComment)]}>Update</button></td>
-                <td><button type="button" onClick={() => setEditPressed(false)}>Cancel</button></td>
+                <td><button className="btn-sm" type="button" onClick={() => [setEditPressed(false), handleEditComment(editedComment)]}>Update</button></td>
+                <td><button className="btn-sm" type="button" onClick={() => setEditPressed(false)}>Cancel</button></td>
               </>
       </tr> 
       :
@@ -30,8 +30,8 @@ export default function CommentCard({user, comment, handleEditComment, handleDel
         <td>{comment.text}</td>
           {user._id === comment.user ?
             <>
-              <td><button type="button" onClick={() => setEditPressed(true)}>Edit</button></td>
-              <td><button type="button" onClick={() => handleDeleteComment(comment)}>Delete</button></td>
+              <td><button className="btn-sm" type="button" onClick={() => setEditPressed(true)}>Edit</button></td>
+              <td><button className="btn-sm" type="button" onClick={() => handleDeleteComment(comment)}>Delete</button></td>
             </>  
             :
             <></>

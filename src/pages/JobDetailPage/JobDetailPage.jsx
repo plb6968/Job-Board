@@ -2,8 +2,6 @@ import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from "react-router-dom";
 import CommentForm from "../../components/CommentForm/CommentForm";
 import CommentCard from "../../components/CommentCard/CommentCard";
-import UpdateCommentForm from "../../CommentUpdateForm/CommentUpdateForm";
-import * as jobsAPI from "../../utilities/jobs-api";
 import * as commentsAPI from "../../utilities/comments-api";
 
 export default function JobDetailPage({ setJobs, jobs, user }) {
@@ -28,19 +26,13 @@ export default function JobDetailPage({ setJobs, jobs, user }) {
   }
 
   async function handleEditComment(editedComment) {
-    console.log(editedComment);
     let updatedJob = await commentsAPI.updateComment(editedComment, jobId);
-    console.log(updatedJob);
     setCurJob(updatedJob);
-    //setAllComments(updatedJob.comments);
    }
 
   async function handleDeleteComment(comment) {
-    console.log('handleDeleteComment called');
     let updatedJob = await commentsAPI.deleteComment(comment._id);
-    console.log(updatedJob);
     setCurJob(updatedJob);
-    //setAllComments(updatedJob.comments)
   }
 
   return (
@@ -58,7 +50,7 @@ export default function JobDetailPage({ setJobs, jobs, user }) {
         <p>{curJob.description}</p>
       </div>
       <div>
-        <h4>Responcibilities:</h4>
+        <h4>Responsibilities:</h4>
         <p>{curJob.responcibilities}</p>
       </div>
       <div>
@@ -66,20 +58,14 @@ export default function JobDetailPage({ setJobs, jobs, user }) {
         <p>{curJob.skills}</p>
       </div>
       <div>
-        <h4>Benifets:</h4>
+        <h4>Benefits:</h4>
         <p>{curJob.benifets}</p>
       </div>
       <div>
       </div>
         <CommentForm handleNewComment={handleNewComment} />
       <div>
-        <table>
-          <thead>
-            <tr>
-              <th>User</th>
-              <th>Comment</th>
-            </tr>
-          </thead>
+        <table className="align-ctr">
           <tbody>
             {curJob.comments.map((comment, idx) => 
               <CommentCard 
